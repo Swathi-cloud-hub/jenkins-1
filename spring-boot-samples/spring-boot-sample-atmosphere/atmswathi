@@ -1,0 +1,42 @@
+pipeline{
+	agent any
+	environment {
+		myrepo = 'spring-boot-samples/spring-boot-sample-atmosphere'
+    }
+	tools {
+		maven 'm3.6'
+	}
+	stages{
+		stage('Build') {
+			steps {
+				sh "mvn clean package -f $myrepo/pom.xml"
+            } 
+	    }
+		stage('Test results') {
+			steps {
+				junit "$myrepo/target/surefire-reports/*.xml"
+            }
+		}
+		stage('Archeive artifact') {
+			steps {
+				archiveArtifacts artifacts: "$myrepo/target/*.?ar", followSymlinks: false
+			}	
+        }
+    }
+	post {
+		success{
+			notify('success')
+		}
+		failure{
+			notify('failure')
+		}
+    }
+}
+def notify(status) {
+	emailext body: "${status}jenkins ended", subject: "${status}", to: 'Peruguswathi11@gmail.com'
+}
+	
+		
+	
+	
+	
