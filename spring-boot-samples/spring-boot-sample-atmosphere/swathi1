@@ -7,11 +7,6 @@ pipeline{
 		maven 'm3.6'
 	}
 	stages{
-	    stage('checkout') {
-	        steps {
-	            git "https://github.com/Swathi-cloud-hub/jenkins-1.git"
-	        }
-	    }
 		stage('Build') {
 			steps {
 				sh "mvn clean package -f $myrepo/pom.xml"
