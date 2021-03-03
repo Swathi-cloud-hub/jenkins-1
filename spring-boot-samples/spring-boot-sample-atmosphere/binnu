@@ -7,6 +7,7 @@ pipeline{
 		maven 'm3.6'
 	}
 	stages{
+	 parameters { string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '') }
 		stage('Build') {
 			steps {
 				sh "mvn clean package -f $myrepo/pom.xml"
