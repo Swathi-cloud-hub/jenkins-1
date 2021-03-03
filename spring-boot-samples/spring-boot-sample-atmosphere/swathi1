@@ -6,6 +6,7 @@ pipeline{
 	tools {
 		maven 'm3.6'
 	}
+	 parameters { string(name: 'MVN_SWATHI', defaultValue: 'package', description: '') }
 	stages{
 		stage('Build') {
 			steps {
