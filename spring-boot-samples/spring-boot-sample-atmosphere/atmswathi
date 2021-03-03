@@ -3,7 +3,6 @@ pipeline{
 	environment {
 		myrepo = 'spring-boot-samples/spring-boot-sample-atmosphere'
     }
-     parameters { string(name: 'MVN_SWATHI', defaultValue: 'package', description: '') }
 	tools {
 		maven 'm3.6'
 	}
