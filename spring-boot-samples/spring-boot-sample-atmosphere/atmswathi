@@ -3,13 +3,14 @@ pipeline{
 	environment {
 		myrepo = 'spring-boot-samples/spring-boot-sample-atmosphere'
     }
+     parameters { string(name: 'MVN_SWATHI', defaultValue: 'package', description: '') }
 	tools {
 		maven 'm3.6'
 	}
 	stages{
 		stage('Build') {
 			steps {
-				sh "mvn clean package -f $myrepo/pom.xml"
+				sh "mvn clean $MVN_SWATHI -f $myrepo/pom.xml"
             } 
 	    }
 		stage('Test results') {
